@@ -267,15 +267,17 @@ def main(stdscr):
             break
 
         if fim_de_partida is None:
-
+            
             if entrada in ['a', 's', 'w', 'd']:
                 pos_x, pos_y = espaco_do_tabuleiro(pos_x, pos_y, entrada)
 
             if entrada == "\n":
                 jogou, posicoes = jogador(pos_x, pos_y, posicoes)
                 fim_de_partida = ganhador(posicoes)
+                
                 if jogou is True and fim_de_partida is None:
                     posicoes = robo(posicoes)
+                    fim_de_partida = ganhador(posicoes)
 
         if entrada == "y":
             fim_de_partida = None
