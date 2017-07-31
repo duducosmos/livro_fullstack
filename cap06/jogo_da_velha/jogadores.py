@@ -53,32 +53,20 @@ class Jogadores(object):
         self.controle = controle
         self.posicoes = posicoes
         self.fim_de_partida = False
-        self.__ganhador = None
+        self._vencedor = None
 
-    def get_ganhador(self):
-        """
-        Retorna o nome do ganhador da partida
-        """
-        return self.__ganhador
+    def _get_vencedor(self):
+        return self._vencedor
 
-    def get_fim_de_partida(self):
-        """
-        Retorna se a partida chegou ao fim
-        """
-        return self.fim_de_partida
-
-    def set_fim_de_partida(self, fim_de_partida):
-        """
-        Reiniciliza o atributo que indica se a partida terminou
-        """
-        self.fim_de_partida = fim_de_partida
+    def _set_vencedor(self, vencedor):
+        self._vencedor = vencedor
 
     def jogador(self):
         """
         Marca a opção do jogador
         """
-        if self.posicoes[self.controle.get_y()][self.controle.get_x()] == " ":
-            self.posicoes[self.controle.get_y()][self.controle.get_x()] = "x"
+        if self.posicoes[self.controle.pos_y][self.controle.pos_x] == " ":
+            self.posicoes[self.controle.pos_y][self.controle.pos_x] = "x"
             return True
         return False
 
@@ -132,13 +120,13 @@ class Jogadores(object):
 
         gan = self.__total_alinhado(diagonal1)
         if gan is not None:
-            self.__ganhador = gan
+            self._vencedor = gan
             return True
 
         gan = self.__total_alinhado(diagonal2)
 
         if gan is not None:
-            self.__ganhador = gan
+            self._vencedor = gan
             return True
 
         velha = 9
@@ -146,19 +134,19 @@ class Jogadores(object):
 
             gan = self.__total_alinhado(self.posicoes[i])
             if gan is not None:
-                self.__ganhador = gan
+                self._vencedor = gan
                 return True
 
             gan = self.__total_alinhado(transposta[i])
             if gan is not None:
-                self.__ganhador = gan
+                self._vencedor = gan
                 return True
 
             velha -= self.posicoes[i].count("x")
             velha -= self.posicoes[i].count("o")
 
         if velha == 0:
-            self.__ganhador = "velha"
+            self._vencedor = "velha"
             return True
 
         return False
@@ -173,3 +161,5 @@ class Jogadores(object):
         if jogou is True and self.fim_de_partida is False:
             self.robo()
             self.fim_de_partida = self.ganhador()
+
+    vencedor = property(_get_vencedor, _set_vencedor)

@@ -54,42 +54,6 @@ class Controle(object):
         self.pos_y = 0
         self.entrada = None
 
-    def get_x_center(self):
-        """
-        Retorna a posição central da tela
-        """
-        return self.x_center
-
-    def get_x(self):
-        """
-        Retorna o valor de x
-        """
-        return self.pos_x
-
-    def get_y(self):
-        """
-        Retorna o valor de y
-        """
-        return self.pos_y
-
-    def set_x(self, pos_x):
-        """
-        Muda o valor de x
-        """
-        self.pos_x = pos_x
-
-    def set_y(self, pos_y):
-        """
-        Muda o valor de y
-        """
-        self.pos_y = pos_y
-
-    def get_entrada(self):
-        """
-        Retorna a tecla digitada pelo jogador
-        """
-        return self.entrada
-
     def _limites(self):
         """
         Determina os limites do tabuleiro do jogo

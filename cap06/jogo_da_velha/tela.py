@@ -104,10 +104,10 @@ class Tela(object):
         self.stdscr.clear()
         self.reiniciar_tela(limpar=False)
 
-        self.stdscr.addstr(10, controle.get_x_center() - 3, "------")
-        self.stdscr.addstr(12, controle.get_x_center() - 3, "------")
+        self.stdscr.addstr(10, controle.x_center - 3, "------")
+        self.stdscr.addstr(12, controle.x_center - 3, "------")
         i = 9
         for linha in self.posicoes:
             tela = "%s|%s|%s " % tuple(linha)
-            self.stdscr.addstr(i, controle.get_x_center() - 3, tela)
+            self.stdscr.addstr(i, controle.x_center - 3, tela)
             i += 2
